@@ -1,81 +1,66 @@
-# Repair My Deck Website
+# Repair My Deck Website (Static-First)
 
-Static-first small-business website package for **Repair My Deck** (Reynoldsburg, Ohio).
+A polished, conversion-focused local service website package for **Repair My Deck** in Reynoldsburg, Ohio.
+Built with plain HTML/CSS/JS plus an optional PHP contact handler for generic shared hosting.
 
-## Included Files
+## Files
 
-- `index.html` - Main website page with SEO tags, semantic sections, CTA messaging, and contact form.
-- `styles.css` - Mobile-first responsive styling.
-- `script.js` - Navigation toggle, reviews rendering, and contact form validation/submission logic.
-- `reviews.js` - Demo review data + optional Google reviews integration hook.
-- `contact-handler.php` - Optional shared-hosting form handler using PHP `mail()`.
+- `index.html` - Full website markup, SEO tags, JSON-LD schema, conversion sections, and contact form.
+- `styles.css` - Mobile-first responsive styles.
+- `script.js` - Navigation toggle, reviews rendering, form validation/submission, and ID consistency checks.
+- `reviews.js` - Demo review source + optional live Google reviews integration hook.
+- `contact-handler.php` - Optional PHP mail handler.
+- `assets/logo.png` - Your logo file (add this image manually).
 
-## Quick Upload (Shared Hosting)
+## Shared Hosting Deployment
 
-1. Upload all files to your web root (`public_html` or equivalent).
-2. Create an `assets` folder if not present.
-3. Place your logo at `assets/logo.png`.
-4. (Optional) Add real project photos and replace gallery placeholders in `index.html`.
+1. Upload all files to your web root (often `public_html`).
+2. Create an `assets` folder if missing.
+3. Upload your logo as `assets/logo.png`.
+4. Test on mobile and desktop after upload.
 
-## Contact Form Setup Options
+## Contact Form Options
 
-### Option A: Static endpoint service (recommended simple setup)
+### Option A (Static endpoint service)
+Use Formspree or similar:
 
-Use Formspree or a similar service.
+1. Create your endpoint.
+2. Update form action in `index.html` from:
+   `action="contact-handler.php"`
+   to your hosted endpoint URL.
+3. Keep `script.js` for client-side validation and status messages.
 
-1. Create endpoint with your provider.
-2. In `index.html`, update the form `action` attribute from:
-   ```html
-   action="contact-handler.php"
-   ```
-   to your provider URL, for example:
-   ```html
-   action="https://formspree.io/f/your-id"
-   ```
-3. Keep `script.js` as-is for validation + status messages.
+### Option B (PHP on shared hosting)
 
-### Option B: Built-in PHP handler (if host supports mail)
+1. Keep `action="contact-handler.php"`.
+2. In `contact-handler.php`, set `$toEmail` to your inbox.
+3. Confirm host mail() support.
+4. Submit a test request and verify email delivery.
 
-1. Keep form action pointing to `contact-handler.php`.
-2. Open `contact-handler.php` and set:
-   - `$toEmail` to your real inbox.
-   - `From` domain to a valid domain mailbox for better deliverability.
-3. Test with a real submission.
+## Reviews Section Setup
 
-## Reviews Setup
+### Default mode (recommended until live API is ready)
 
-### Default (works everywhere)
+- `reviews.js` uses demo/sample data clearly labeled as sample content.
 
-- `reviews.js` loads sample/demo reviews clearly labeled as demo content.
+### Optional live Google reviews mode
 
-### Optional live Google reviews
+1. Build a secure backend endpoint (never expose secret key in frontend code).
+2. Implement `fetchGoogleReviews()` in `reviews.js` to call your backend.
+3. Change `mode` from `"demo"` to `"live"`.
+4. Keep fallback behavior in `script.js`.
 
-- Keep API keys off the frontend.
-- Create a secure backend endpoint to request Google Business/Places data.
-- In `reviews.js`:
-  1. Implement `fetchGoogleReviews()`.
-  2. Set `mode: "live"`.
-  3. Maintain fallback behavior to demo content.
+## Quick Business Detail Updates
 
-## Easy Business Detail Edits
+In `index.html`, update as needed:
 
-Update these common items in `index.html`:
-
-- Phone number links: search `614-522-9472`
+- Phone: `614-522-9472`
 - Email: `info@repairmydeck.com`
 - Website URL references
-- Service area text (Reynoldsburg and nearby communities)
+- Service areas (Reynoldsburg + nearby towns)
 
-## Accessibility & Performance Notes
+## Notes
 
-- Semantic HTML landmarks used (`header`, `main`, `section`, `footer`).
-- Skip link for keyboard users.
-- Alt text and ARIA labels included for placeholders.
-- No external JS or CSS dependencies required.
-
-## Suggested Next Improvements
-
-- Add authentic project photos in gallery and hero.
-- Replace demo reviews with live feed (secure backend integration).
-- Add a privacy policy and terms page if needed.
-- Add Google Analytics / conversion tracking script if desired.
+- No Node, npm, React, build steps, or database required.
+- Compatible with low-cost generic shared hosting.
+- Designed to degrade gracefully if APIs are not configured yet.

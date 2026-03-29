@@ -1,68 +1,74 @@
 /*
   reviews.js
-  -------------------------------------------------------------
-  This file powers the Reviews section with a graceful fallback.
+  ----------------------------------------------------------------
+  Reviews data source and optional live integration hook.
 
-  Default behavior:
-  - Uses DEMO review data so the site looks complete on any static host.
+  Default mode = demo:
+  - Keeps the page complete even on simple shared hosting.
+  - Uses clearly labeled sample content (not real customer reviews).
 
-  Optional future behavior (Google Places integration):
-  - Replace fetchGoogleReviews() with an API call to your backend endpoint.
-  - Do NOT expose private Google API keys in frontend JavaScript.
-  - Shared hosting often cannot safely store secret keys in client code.
+  Optional live mode:
+  - Implement fetchGoogleReviews() via a secure backend endpoint.
+  - Never expose secret Google API credentials in frontend JavaScript.
 */
 
 window.REPAIR_MY_DECK_REVIEWS = {
-  mode: "demo", // Keep as "demo" until secure live integration is configured.
+  mode: "demo", // change to "live" only after backend integration is ready
 
   demoSummary: {
     averageRating: 4.9,
     totalReviews: 27,
-    sourceLabel: "Sample Data (Demo Content)"
+    sourceLabel: "Sample Demo Data"
   },
 
-  // Clearly marked sample/demo reviews. These are not claimed to be real customer reviews.
+  // Sample content only. Replace with live data later.
   demoReviews: [
     {
-      author: "Sample Homeowner A",
+      author: "Sample Reynoldsburg Homeowner",
       rating: 5,
       relativeTime: "Sample: 2 weeks ago",
-      text: "Demo review content placeholder: The crew explained repair options clearly and kept the project timeline on track."
+      text: "Demo content: The team explained our repair options clearly and helped us prioritize safety first."
     },
     {
-      author: "Sample Homeowner B",
+      author: "Sample Pickerington Homeowner",
       rating: 5,
       relativeTime: "Sample: 1 month ago",
-      text: "Demo review content placeholder: We chose a standardized design package and the process felt organized and affordable."
+      text: "Demo content: We selected a standardized deck design and the installation process felt organized and efficient."
     },
     {
-      author: "Sample Homeowner C",
+      author: "Sample Canal Winchester Homeowner",
       rating: 4,
       relativeTime: "Sample: 3 weeks ago",
-      text: "Demo review content placeholder: Communication was consistent and the finished deck stairs look much safer."
+      text: "Demo content: Good communication, fair pricing discussion, and the finished deck stairs look great."
     }
   ],
 
   async fetchGoogleReviews() {
     /*
-      OPTIONAL INTEGRATION HOOK:
-      -----------------------------------------------------------
-      1) Create a secure backend endpoint (PHP or serverless) that calls
-         the Google Business Profile / Places API with your private key.
-      2) Return normalized JSON in this shape:
+      OPTIONAL LIVE INTEGRATION GUIDE
+      ----------------------------------------------------------------
+      1) Create a secure backend endpoint (PHP/serverless) that calls
+         Google Business Profile / Places APIs with your private key.
+      2) Normalize API response to:
          {
-           summary: { averageRating: number, totalReviews: number, sourceLabel: string },
-           reviews: [ { author, rating, relativeTime, text } ]
+           summary: {
+             averageRating: number,
+             totalReviews: number,
+             sourceLabel: string
+           },
+           reviews: [
+             { author: string, rating: number, relativeTime: string, text: string }
+           ]
          }
-      3) Switch mode from "demo" to "live" below.
-      4) Keep frontend fallback to demo data in case API fails.
+      3) Change mode to "live" once verified.
+      4) Keep fallback handling in script.js to protect UX if API fails.
     */
 
-    // Example stub for future use:
-    // const response = await fetch('/reviews-proxy.php');
-    // if (!response.ok) throw new Error('Review fetch failed');
-    // return await response.json();
+    // Example placeholder:
+    // const res = await fetch('/reviews-proxy.php', { headers: { Accept: 'application/json' } });
+    // if (!res.ok) throw new Error('Failed to fetch live reviews');
+    // return await res.json();
 
-    throw new Error("Live reviews are not configured yet.");
+    throw new Error("Live reviews are not configured.");
   }
 };
