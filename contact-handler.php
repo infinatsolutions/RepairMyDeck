@@ -50,7 +50,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // TODO: Replace this with your real receiving inbox.
-$toEmail = 'info@repairmydeck.com';
+$toEmail = 'repairmydeck@iCloud.com';
 $subject = 'New Quote Request - Repair My Deck Website';
 
 $body = implode("\n", [

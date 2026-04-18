@@ -55,7 +55,7 @@ Use Formspree or similar:
 In `index.html`, update as needed:
 
 - Phone: `614-522-9472`
-- Email: `info@repairmydeck.com`
+- Email: `repairmydeck@iCloud.com`
 - Website URL references
 - Service areas (Reynoldsburg + nearby towns)
 
