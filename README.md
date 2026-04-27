@@ -1,66 +1,48 @@
-# Repair My Deck Website (Static-First)
+# Repair My Deck Website (Minimal Redesign)
 
-A polished, conversion-focused local service website package for **Repair My Deck** in Reynoldsburg, Ohio.
-Built with plain HTML/CSS/JS plus an optional PHP contact handler for generic shared hosting.
+A minimalistic static website for Repair My Deck that works on low-cost shared hosting.
 
 ## Files
 
-- `index.html` - Full website markup, SEO tags, JSON-LD schema, conversion sections, and contact form.
-- `styles.css` - Mobile-first responsive styles.
-- `script.js` - Navigation toggle, reviews rendering, form validation/submission, and ID consistency checks.
-- `reviews.js` - Demo review source + optional live Google reviews integration hook.
-- `contact-handler.php` - Optional PHP mail handler.
-- `assets/logo.png` - Your logo file (add this image manually).
+- `index.html` - Main page markup with SEO, pricing, gallery, and contact form.
+- `styles.css` - Minimal responsive styles.
+- `script.js` - Menu toggle and contact form validation/submission.
+- `reviews.js` - Reserved placeholder (reviews are currently not displayed).
+- `contact-handler.php` - Optional PHP form handler for shared hosting.
 
-## Shared Hosting Deployment
-
-1. Upload all files to your web root (often `public_html`).
-2. Create an `assets` folder if missing.
-3. Upload your logo as `assets/logo.png`.
-4. Test on mobile and desktop after upload.
-
-## Contact Form Options
-
-### Option A (Static endpoint service)
-Use Formspree or similar:
-
-1. Create your endpoint.
-2. Update form action in `index.html` from:
-   `action="contact-handler.php"`
-   to your hosted endpoint URL.
-3. Keep `script.js` for client-side validation and status messages.
-
-### Option B (PHP on shared hosting)
-
-1. Keep `action="contact-handler.php"`.
-2. In `contact-handler.php`, set `$toEmail` to your inbox.
-3. Confirm host mail() support.
-4. Submit a test request and verify email delivery.
-
-## Reviews Section Setup
-
-### Default mode (recommended until live API is ready)
-
-- `reviews.js` uses demo/sample data clearly labeled as sample content.
-
-### Optional live Google reviews mode
-
-1. Build a secure backend endpoint (never expose secret key in frontend code).
-2. Implement `fetchGoogleReviews()` in `reviews.js` to call your backend.
-3. Change `mode` from `"demo"` to `"live"`.
-4. Keep fallback behavior in `script.js`.
-
-## Quick Business Detail Updates
-
-In `index.html`, update as needed:
+## Business Details Used
 
 - Phone: `614-522-9472`
 - Email: `repairmydeck@iCloud.com`
-- Website URL references
-- Service areas (Reynoldsburg + nearby towns)
+- Service area: Reynoldsburg, OH and surrounding area
+- Pricing copy:
+  - Deck repairs starting as low as `$6 / linear foot`
+  - New deck construction starting at `$35 / square foot`
 
-## Notes
+## Photo Integration
 
-- No Node, npm, React, build steps, or database required.
-- Compatible with low-cost generic shared hosting.
-- Designed to degrade gracefully if APIs are not configured yet.
+The site now uses real image slots instead of placeholder blocks.
+Add your photos in `assets/photos/` with these filenames:
+
+- `featured-deck.jpg`
+- `deck-repair-closeup.jpg`
+- `new-deck-build.jpg`
+- `before-after.jpg`
+- `railing-stairs-detail.jpg`
+
+If filenames differ, update the `<img src="...">` paths in `index.html`.
+
+## Contact Form Forwarding
+
+By default, the form posts to `contact-handler.php`, which forwards to:
+
+- `repairmydeck@iCloud.com`
+
+If your host doesn't support `mail()`, replace the form `action` in `index.html` with your Formspree (or similar) endpoint.
+
+## Upload Steps
+
+1. Upload all files to your host web root (`public_html` or equivalent).
+2. Upload logo to `assets/logo.png`.
+3. Upload gallery images to `assets/photos/`.
+4. Submit a test form and verify email delivery.

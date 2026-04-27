@@ -2,12 +2,8 @@
 /**
  * contact-handler.php
  *
- * Optional lightweight handler for shared hosting.
- * Works with HTML form on index.html when PHP mail() is available.
- *
- * Setup:
- * - Update $toEmail with your destination inbox.
- * - Ensure your host supports mail() and sender domain alignment.
+ * Optional shared-hosting form handler for Repair My Deck.
+ * Forwards submissions to: repairmydeck@iCloud.com
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -37,7 +33,7 @@ if ($honeypot !== '') {
     exit;
 }
 
-if (strlen($name) < 2 || strlen($phone) < 7 || strlen($city) < 2 || strlen($projectType) < 2 || strlen($message) < 10) {
+if (strlen($name) < 2 || strlen($phone) < 7 || strlen($city) < 2 || strlen($projectType) < 2 || strlen($message) < 8) {
     http_response_code(422);
     echo json_encode(['ok' => false, 'message' => 'Please complete all required fields.']);
     exit;
@@ -49,12 +45,11 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// TODO: Replace this with your real receiving inbox.
 $toEmail = 'repairmydeck@iCloud.com';
-$subject = 'New Quote Request - Repair My Deck Website';
+$subject = 'New Website Quote Request - Repair My Deck';
 
 $body = implode("\n", [
-    'New quote request submitted from Repair My Deck website:',
+    'New quote request submitted:',
     '',
     'Name: ' . $name,
     'Phone: ' . $phone,
@@ -84,5 +79,5 @@ if ($sent) {
 http_response_code(500);
 echo json_encode([
     'ok' => false,
-    'message' => 'Server mail is not configured. Use Formspree or SMTP-enabled handler.'
+    'message' => 'Mail is not configured on this server. Please call 614-522-9472.'
 ]);
