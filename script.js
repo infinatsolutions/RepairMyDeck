@@ -52,6 +52,25 @@
     return "";
   }
 
+
+  function setupReviewsPanel() {
+    var panel = document.getElementById("reviews-panel");
+    var reviewsData = window.REPAIR_MY_DECK_GOOGLE_REVIEWS;
+    if (!panel || !reviewsData) return;
+
+    var html = "";
+
+    if (reviewsData.liveSummary && reviewsData.liveSummary.rating && reviewsData.liveSummary.totalReviews) {
+      html += '<p><strong>' + reviewsData.businessName + '</strong> currently shows approximately ' +
+        reviewsData.liveSummary.rating + ' stars from ' + reviewsData.liveSummary.totalReviews + ' reviews on Google.</p>';
+    } else {
+      html += '<p><strong>' + reviewsData.businessName + '</strong>: ' + reviewsData.message + '</p>';
+    }
+
+    html += '<p><a class="text-link" target="_blank" rel="noopener noreferrer" href="' + reviewsData.googleReviewsUrl + '">Open Google Reviews</a></p>';
+    panel.innerHTML = html;
+  }
+
   function setupContactForm() {
     var form = document.getElementById("contact-form");
     var status = document.getElementById("form-status");
@@ -94,5 +113,6 @@
     });
   }
 
+  setupReviewsPanel();
   setupContactForm();
 })();

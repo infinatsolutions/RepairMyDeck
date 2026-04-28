@@ -7,7 +7,7 @@ A minimalistic static website for Repair My Deck that works on low-cost shared h
 - `index.html` - Main page markup with SEO, pricing, gallery, and contact form.
 - `styles.css` - Minimal responsive styles.
 - `script.js` - Menu toggle and contact form validation/submission.
-- `reviews.js` - Reserved placeholder (reviews are currently not displayed).
+- `reviews.js` - Google reviews section data/link configuration.
 - `contact-handler.php` - Optional PHP form handler for shared hosting.
 
 ## Business Details Used
@@ -71,3 +71,12 @@ This repository is configured to avoid binary update failures in some GitHub/PR 
 - Keep only `.gitkeep` files in `assets/photos/` and `dist/` in git; add images/ZIPs only in deployment packages or releases.
 
 If a branch still reports a binary-file update error, create a fresh branch from the current clean commit and push that branch.
+
+
+## Google Reviews Section
+
+The site now includes a Google Reviews section that links directly to your public Google reviews page.
+
+- Source file: `reviews.js`
+- Update `googleReviewsUrl` if your preferred Google Business Profile URL changes.
+- Optional: add `liveSummary` in `reviews.js` if you later connect a secure backend integration.

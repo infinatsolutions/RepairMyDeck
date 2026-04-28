@@ -444,3 +444,21 @@ textarea:focus {
   cursor: pointer;
   font-weight: 700;
 }
+
+.reviews-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.reviews-loading {
+  color: var(--muted);
+  margin: 0;
+}
+
+.text-link {
+  color: #111;
+  font-weight: 700;
+}
