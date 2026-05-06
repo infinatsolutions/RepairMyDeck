@@ -18,7 +18,6 @@ A minimalistic static website for Repair My Deck that works on low-cost shared h
 - Service area: Reynoldsburg, OH and surrounding area
 - Pricing copy:
   - Deck repairs starting as low as `$10 / linear foot`
-  - New deck construction starting at `$35 / square foot`
 
 ## Photo Integration
 
