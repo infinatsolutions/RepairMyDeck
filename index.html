@@ -123,6 +123,7 @@
 
       <nav id="site-nav" class="site-nav" aria-label="Primary">
         <a href="#services">Services</a>
+        <a href="/backyard-builds">Backyard Builds</a>
         <a href="#pricing">Pricing</a>
         <a href="#service-area">Service Area</a>
         <a href="#gallery">Gallery</a>
@@ -207,6 +208,18 @@
             </ul>
           </article>
         </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="backyard-builds-home">
+      <div class="container narrow">
+        <h2>Now Offering Custom Backyard Builds</h2>
+        <p>
+          Repair My Deck now builds more than decks. Ask us about picnic tables, raised garden beds, privacy screens,
+          trash can enclosures, doghouses, planter boxes, firewood racks, custom deck bars, and other outdoor wood projects.
+        </p>
+        <a class="btn btn-solid" href="/backyard-builds">Explore Backyard Builds</a>
       </div>
     </section>
 
@@ -336,12 +349,86 @@
               <option>Deck Repair</option>
               <option>New Deck Construction</option>
               <option>Deck Rebuild</option>
+              <option>Raised Garden Beds</option>
+              <option>Deck Planter Boxes</option>
+              <option>Privacy Screens</option>
+              <option>Deck Bars & Outdoor Bars</option>
+              <option>Picnic Tables</option>
+              <option>Outdoor Storage Benches</option>
+              <option>Trash Can Enclosures</option>
+              <option>Doghouses</option>
+              <option>Dog Feeding Stations</option>
+              <option>Birdhouses & Bird Feeders</option>
+              <option>Potting Benches</option>
+              <option>Firewood Racks</option>
+              <option>Cornhole Boards</option>
+              <option>Grill Prep Tables & Outdoor Bar Carts</option>
+              <option>Sandboxes</option>
+              <option>Backyard Bundle</option>
+              <option>Other Custom Outdoor Build</option>
               <option>Not Sure Yet</option>
             </select>
           </div>
 
           <div class="form-row">
-            <label for="message">Project Details *</label>
+            <label for="zipCode">City / ZIP Code</label>
+            <input type="text" id="zipCode" name="zipCode" autocomplete="postal-code" />
+          </div>
+
+          <div class="form-row">
+            <label for="preferredContact">Preferred contact method</label>
+            <select id="preferredContact" name="preferredContact">
+              <option>Phone</option>
+              <option>Email</option>
+              <option>Text</option>
+              <option>No preference</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="sizeNeeded">Approximate size needed</label>
+            <input type="text" id="sizeNeeded" name="sizeNeeded" placeholder="Example: 6ft table, 4x8 garden bed" />
+          </div>
+
+          <div class="form-row">
+            <label for="preferredMaterial">Preferred material</label>
+            <select id="preferredMaterial" name="preferredMaterial">
+              <option>Pressure-treated pine</option>
+              <option>Cedar</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="finishPreference">Finish preference</label>
+            <select id="finishPreference" name="finishPreference">
+              <option>Unfinished</option>
+              <option>Stained</option>
+              <option>Sealed</option>
+              <option>Painted</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="form-row two-col-inline">
+            <div>
+              <label for="deliveryNeeded">Delivery needed?</label>
+              <select id="deliveryNeeded" name="deliveryNeeded">
+                <option>Yes</option><option>No</option><option>Not sure</option>
+              </select>
+            </div>
+            <div>
+              <label for="installationNeeded">Installation needed?</label>
+              <select id="installationNeeded" name="installationNeeded">
+                <option>Yes</option><option>No</option><option>Not sure</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="pricing-note">Photos can be sent after request. We will follow up by text or email so you can share pictures of your space.</p>
+
+          <div class="form-row">
+            <label for="message">Tell us about your project *</label>
             <textarea id="message" name="message" rows="5" required placeholder="Tell us about your deck project..."></textarea>
           </div>
 
