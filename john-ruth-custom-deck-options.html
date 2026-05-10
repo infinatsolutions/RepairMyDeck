@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Deck Repair & Rebuild Options for John and Ruth | Repair My Deck</title>
+  <meta name="description" content="Private customer quote page for John and Ruth to compare cedar and composite deck repair and rebuild options from Repair My Deck." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .jr-wrap{padding:2rem 0 4rem}.jr-hero{margin-bottom:1.5rem}.jr-grid{display:grid;gap:1rem;grid-template-columns:1fr}
+    .jr-card{border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-sm)}
+    .jr-readonly{background:#f3f3f3;color:#444}.jr-two-col{display:grid;gap:1rem;grid-template-columns:1fr}
+    .jr-options{display:grid;gap:1rem}.jr-option{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:0.9rem}
+    .jr-option h4{margin:0 0 .35rem}.jr-img-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:.6rem 0}
+    .jr-toggle{display:block;width:100%;background:none;border:0;padding:0;cursor:pointer}.jr-toggle img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+    .jr-badge{position:absolute;left:.5rem;top:.5rem;background:rgba(17,17,17,.82);color:#fff;padding:.2rem .55rem;border-radius:999px;font-size:.75rem}
+    .jr-help{font-size:.85rem;color:var(--muted);margin:.35rem 0 0}.jr-option ul{margin:.5rem 0 0;padding-left:1.1rem}
+    .jr-summary{position:sticky;bottom:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-md);z-index:5}
+    .jr-total{font-size:1.2rem;font-weight:800}.jr-disclaimer{font-size:.92rem;color:#333;background:#f9f9f9;border:1px solid var(--line);padding:.9rem;border-radius:10px}
+    .jr-missing{display:grid;place-items:center;min-height:210px;background:#ececec;color:#555;font-weight:600}
+    @media(min-width:980px){.jr-two-col{grid-template-columns:1fr 1fr}.jr-grid{grid-template-columns:1fr 1fr 1fr}.jr-summary{margin-top:1rem}}
+  </style>
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Repair My Deck home"><img src="assets/logo.png" alt="Repair My Deck logo" class="brand-logo" /><span>Repair My Deck</span></a>
+    <a class="btn btn-outline" href="tel:+16145229472">614-522-9472</a>
+  </div>
+</header>
+
+<main class="jr-wrap">
+  <div class="container">
+    <section class="jr-hero">
+      <h1>Custom Deck Repair &amp; Rebuild Options for John and Ruth</h1>
+      <p>Review your personalized cedar and composite options, compare existing photos with proposed renderings, and select the services you would like us to schedule.</p>
+    </section>
+
+    <section class="jr-card">
+      <h2>Customer Details</h2>
+      <div class="jr-grid">
+        <div><label>Name</label><input class="jr-readonly" value="John and Ruth" readonly></div>
+        <div><label>Email</label><input class="jr-readonly" value="john.sefaniuk@gmail.com" readonly></div>
+        <div><label>Phone</label><input class="jr-readonly" value="614-205-9454" readonly></div>
+      </div>
+      <div class="form-row" style="margin-top:.8rem"><label>Address</label><input class="jr-readonly" value="4496 Kay Ct, Grove City, Ohio 43123" readonly></div>
+      <p class="pricing-note">This page is a customer-specific estimate selection tool prepared for John and Ruth.</p>
+    </section>
+
+    <section class="section">
+      <div class="jr-two-col">
+        <div>
+          <h2>Cedar Options</h2>
+          <div id="cedar-options" class="jr-options"></div>
+        </div>
+        <div>
+          <h2>Composite Options</h2>
+          <div id="composite-options" class="jr-options"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="jr-summary" aria-live="polite" id="estimate-summary">
+      <h3>Estimate Summary</h3>
+      <p id="selected-empty">No options selected yet.</p>
+      <ul id="selected-list"></ul>
+      <ul id="custom-list"></ul>
+      <p class="jr-total">Estimated Selected Total: <span id="estimate-total">$0</span></p>
+      <p><strong>Estimates are based upon common materials costs. Should materials desired by the customer require premium costs, estimates will be increased to match. Labor is always quoted in a static manner based upon selected material type.</strong></p>
+    </section>
+
+    <section class="section muted" id="submit-section">
+      <div class="container contact-layout" style="padding:0;width:100%">
+        <form id="john-ruth-form" class="contact-form" action="https://formsubmit.co/repairmydeck@iCloud.com" method="post" novalidate>
+          <input type="hidden" name="_subject" value="John & Ruth - Selected Deck Options" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="selected_options_json" id="selected_options_json" />
+          <input type="hidden" name="selected_options_plain_text" id="selected_options_plain_text" />
+          <input type="hidden" name="estimated_total" id="estimated_total" />
+          <input type="hidden" name="custom_estimate_required_items" id="custom_estimate_required_items" />
+          <input type="hidden" name="page_customer_name" value="John and Ruth" />
+          <input type="hidden" name="page_customer_email" value="john.sefaniuk@gmail.com" />
+          <input type="hidden" name="page_customer_phone" value="614-205-9454" />
+          <input type="hidden" name="page_customer_address" value="4496 Kay Ct, Grove City, Ohio 43123" />
+
+          <div class="form-row"><label for="preferredStartDate">Preferred Start Date</label><input type="date" id="preferredStartDate" name="preferred_start_date" /></div>
+          <div class="form-row"><label for="comments">Comments</label><textarea id="comments" name="comments" rows="5" placeholder="Add any notes about scheduling, material preferences, timing, access to the property, or questions about your estimate."></textarea></div>
+          <div class="form-row"><label><input type="checkbox" id="confirm-estimate" /> I understand this is an estimate based on the selected options, current common material costs, and the information available from the existing deck photos. I understand final pricing may change if premium materials, structural changes, hidden damage, permitting needs, code requirements, or customer-requested changes affect the project scope.</label></div>
+          <button class="btn btn-solid" type="submit" id="submit-btn" disabled>Submit Selected Options</button>
+          <p class="pricing-note">Photos can be sent after request if needed.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="jr-disclaimer">
+      <p><strong>Important Estimate Disclaimer:</strong> The pricing shown on this page is a good-faith estimate prepared specifically for John and Ruth based on the visible condition of the deck, customer-provided project goals, current common material pricing, and the selected material type. Final project pricing may change if hidden structural damage, rot, framing deficiencies, code-compliance requirements, permit requirements, site-access limitations, demolition findings, customer-requested changes, premium material selections, railing system upgrades, fastener upgrades, color availability, manufacturer pricing changes, or other unforeseen conditions affect the final scope of work. Labor pricing is quoted in a static manner based on the selected material type and described scope. Material pricing is based on common material costs unless premium or special-order materials are requested. Submission of selected options does not constitute a binding construction contract, guarantee of scheduling, or authorization to begin work. Final approval, scheduling, payment terms, and project start dates are subject to written confirmation by Repair My Deck.</p>
+      <p>AI-rendered images are conceptual visualizations intended to help compare options. Final appearance may vary based on actual materials, measurements, site conditions, building-code requirements, and final construction details.</p>
+    </section>
+  </div>
+</main>
+
+<script>
+(function(){
+  const fmt = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', maximumFractionDigits:0});
+  const options = [
+    {id:'garage-stairs', title:'Garage Stairs Replacement', cedar:5798, composite:7798, desc:'Replace aging garage stairs with stronger, safer construction.', cedarImg:'assets/photos/John and Ruth - Garage Stairs Cedar Replacement.png', compImg:'assets/photos/John and Ruth - Garage Stairs Composite Replacement.png', original:'assets/photos/John and Ruth - Garage Stairs ORINGAL.jpeg'},
+    {id:'deck-stairs', title:'Deck Stairs Replacement', cedar:6468, composite:8638, desc:'Rebuild deck stairs for safety, appearance, and long-term durability.', cedarImg:'assets/photos/John and Ruth - Railing Replacement Cedar.png', compImg:'assets/photos/John and Ruth - Railing Replacment Composite.png', original:'assets/photos/John and Ruth - Deck Stairs ORIGINAL.jpeg'},
+    {id:'floor-decking', title:'Floor Decking Replacement', cedar:9889, composite:12378, desc:'Replace worn deck boards with upgraded material and clean finish.', cedarImg:'assets/photos/John and Ruth - Full Rebuild Cedar with Gapped Railing.png', compImg:'assets/photos/John and Ruth Full Rebuild Composite Angle 1.png', original:'assets/photos/John and Ruth - Full Deck ORIGINAL.jpeg'},
+    {id:'upper-railing', title:'Upper Deck Railing Replacement', cedar:7776, composite:9732, desc:'Replace upper railing system for safer use and updated look.', cedarImg:'assets/photos/John and Ruth - Railing Replacement Cedar.png', compImg:'assets/photos/John and Ruth - Railing Replacment Composite.png', original:'assets/photos/John and Ruth - Full Deck ORIGINAL.jpeg'},
+    {id:'full-rebuild', title:'Full Deck Rebuild', cedar:27994, composite:35034, desc:'Complete deck rebuild option with 10% full project build discount.', cedarNote:'Includes 10% full project build discount. Original estimate: $31,104.', compNote:'Includes 10% full project build discount. Original estimate: $38,926.', cedarImg:'assets/photos/John and Ruth - Full Rebuild Cedar with Gapped Railing.png', compImg:'assets/photos/John and Ruth Full Rebuild Composite Angle 1.png', original:'assets/photos/John and Ruth - Full Deck ORIGINAL.jpeg'},
+    {id:'future-pool', title:'Future Pool Plan with Stairs New Build', cedar:null, composite:null, desc:'Future pool-side concept option and stair plan.', cedarImg:'assets/photos/John and Ruth - Future Pool Plans with Stairs Cedar.png', compImg:'assets/photos/John and Ruth - Future Pool Plan with Stairs Composite.png', original:'assets/photos/John and Ruth - Future Pool Plan with Stairs ORiGINAL.jpeg'}
+  ];
+
+  const selected = {};
+  const cedarCol = document.getElementById('cedar-options');
+  const compCol = document.getElementById('composite-options');
+
+  function card(option, material){
+    const price = material==='cedar'?option.cedar:option.composite;
+    const note = material==='cedar'?option.cedarNote:option.compNote;
+    const img = material==='cedar'?option.cedarImg:option.compImg;
+    const id = `${option.id}-${material}`;
+    const container = document.createElement('article');
+    container.className='jr-option';
+    container.innerHTML = `<h4>${option.title}</h4>
+      <p>${option.desc}</p>
+      <div class="jr-img-wrap"><span class="jr-badge" id="badge-${id}">Existing Deck Photo</span>
+        <button type="button" class="jr-toggle" data-id="${id}" aria-label="Toggle existing photo and proposed rendering for ${option.title} ${material}">
+          <img src="${option.original}" data-original="${option.original}" data-render="${img}" alt="Existing deck photo for ${option.title}" loading="lazy" />
+        </button>
+      </div>
+      <p class="jr-help">Click image to compare existing photo and proposed rendering.</p>
+      <p><strong>${price===null?'Custom Estimate Required':fmt.format(price)}</strong></p>
+      ${note?`<p class="pricing-note">${note}</p>`:''}
+      <label><input type="checkbox" data-option="${option.id}" data-material="${material}" id="check-${id}" /> Select ${material==='cedar'?'Cedar':'Composite'} option</label>`;
+
+    const image = container.querySelector('img');
+    const btn = container.querySelector('.jr-toggle');
+    const badge = container.querySelector(`#badge-${id}`);
+    const toggle = ()=>{
+      const showingOriginal = image.getAttribute('src')===image.dataset.original;
+      image.src = showingOriginal ? image.dataset.render : image.dataset.original;
+      image.alt = showingOriginal ? `AI-rendered proposed work for ${option.title}` : `Existing deck photo for ${option.title}`;
+      badge.textContent = showingOriginal ? 'Proposed Rendering' : 'Existing Deck Photo';
+    };
+    btn.addEventListener('click', toggle);
+    btn.addEventListener('keydown', (e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+    image.onerror = function(){ this.replaceWith(Object.assign(document.createElement('div'),{className:'jr-missing',textContent:'Image pending upload'})); badge.textContent='Image pending upload'; };
+    return container;
+  }
+
+  options.forEach(o=>{cedarCol.appendChild(card(o,'cedar'));compCol.appendChild(card(o,'composite'));});
+
+  const allChecks = document.querySelectorAll('input[type="checkbox"][data-option]');
+  allChecks.forEach(ch=>ch.addEventListener('change',()=>{
+    const key = ch.dataset.option;
+    if(ch.checked){
+      document.querySelectorAll(`input[data-option="${key}"]`).forEach(other=>{ if(other!==ch) other.checked=false; });
+      selected[key] = {material: ch.dataset.material};
+    }else{
+      delete selected[key];
+    }
+    sync();
+  }));
+
+  function sync(){
+    let total = 0;
+    const selectedList = [];
+    const customList = [];
+    options.forEach(o=>{
+      const pick = selected[o.id];
+      if(!pick) return;
+      const price = pick.material==='cedar' ? o.cedar : o.composite;
+      if(price===null){
+        customList.push(`${o.title} — ${pick.material==='cedar'?'Cedar':'Composite'} — Custom estimate required, not included in current total.`);
+      }else{
+        total += price;
+        selectedList.push(`${o.title} — ${pick.material==='cedar'?'Cedar':'Composite'} — ${fmt.format(price)}`);
+      }
+    });
+
+    document.getElementById('selected-empty').style.display = (selectedList.length||customList.length)?'none':'block';
+    document.getElementById('selected-list').innerHTML = selectedList.map(i=>`<li>${i}</li>`).join('');
+    document.getElementById('custom-list').innerHTML = customList.map(i=>`<li>${i}</li>`).join('');
+    document.getElementById('estimate-total').textContent = fmt.format(total);
+
+    document.getElementById('selected_options_json').value = JSON.stringify({selected, selectedList, customList, total});
+    document.getElementById('selected_options_plain_text').value = selectedList.join(' | ');
+    document.getElementById('custom_estimate_required_items').value = customList.join(' | ');
+    document.getElementById('estimated_total').value = fmt.format(total);
+
+    const validSelection = selectedList.length + customList.length > 0;
+    const confirm = document.getElementById('confirm-estimate').checked;
+    document.getElementById('submit-btn').disabled = !(validSelection && confirm);
+  }
+
+  document.getElementById('confirm-estimate').addEventListener('change', sync);
+  sync();
+})();
+</script>
+</body>
+</html>
