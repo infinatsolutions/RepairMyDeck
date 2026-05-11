@@ -45,6 +45,11 @@ Use this checklist file for copy/paste-ready names:
 
 - `assets/photos/UPLOAD-CHECKLIST.md`
 
+That checklist now includes:
+- exact final `assets/photos/...` file paths,
+- a step-by-step upload process, and
+- a per-option mapping table (which before/cedar/composite image each card uses).
+
 The page is already wired to those exact paths; once files are in place with exact names, the before/after toggle will work automatically.
 
 ## Contact Form Forwarding
