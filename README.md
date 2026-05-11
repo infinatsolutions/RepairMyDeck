@@ -33,6 +33,20 @@ Add your own photos using these filenames:
 
 If filenames differ, update the `<img src="...">` paths in `index.html`.
 
+### John & Ruth private page image setup (easiest method)
+
+For `john-ruth-custom-deck-options.html`, just do this:
+
+1. Open the folder `assets/photos/`.
+2. Copy your 12 John & Ruth images into that folder.
+3. Make sure each filename is an exact match.
+
+Use this checklist file for copy/paste-ready names:
+
+- `assets/photos/UPLOAD-CHECKLIST.md`
+
+The page is already wired to those exact paths; once files are in place with exact names, the before/after toggle will work automatically.
+
 ## Contact Form Forwarding
 
 By default, the form posts to FormSubmit (`https://formsubmit.co/repairmydeck@iCloud.com`) so static test environments can send email without PHP.
