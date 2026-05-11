@@ -108,13 +108,28 @@
 <script>
 (function(){
   const fmt = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', maximumFractionDigits:0});
+  const photos = {
+    originalGarageStairs: 'assets/photos/John and Ruth - Garage Stairs ORINGAL.jpeg',
+    originalDeckStairs: 'assets/photos/John and Ruth - Deck Stairs ORIGINAL.jpeg',
+    originalFullDeck: 'assets/photos/John and Ruth - Full Deck ORIGINAL.jpeg',
+    originalFuturePool: 'assets/photos/John and Ruth - Future Pool Plan with Stairs ORiGINAL.jpeg',
+    cedarGarageStairs: 'assets/photos/John and Ruth - Garage Stairs Cedar Replacement.png',
+    cedarRailing: 'assets/photos/John and Ruth - Railing Replacement Cedar.png',
+    cedarFullRebuild: 'assets/photos/John and Ruth - Full Rebuild Cedar with Gapped Railing.png',
+    cedarFuturePool: 'assets/photos/John and Ruth - Future Pool Plans with Stairs Cedar.png',
+    compGarageStairs: 'assets/photos/John and Ruth - Garage Stairs Composite Replacement.png',
+    compRailing: 'assets/photos/John and Ruth - Railing Replacment Composite.png',
+    compFullRebuild: 'assets/photos/John and Ruth Full Rebuild Composite Angle 1.png',
+    compFuturePool: 'assets/photos/John and Ruth - Future Pool Plan with Stairs Composite.png'
+  };
+
   const options = [
-    {id:'garage-stairs', title:'Garage Stairs Replacement', cedar:5798, composite:9358, desc:'Replace aging garage stairs with stronger, safer construction.', cedarImg:'assets/photos/John and Ruth - Garage Stairs Cedar Replacement.png', compImg:'assets/photos/John and Ruth - Garage Stairs Composite Replacement.png', original:'assets/photos/John and Ruth - Garage Stairs ORINGAL.jpeg'},
-    {id:'deck-stairs', title:'Deck Stairs Replacement', cedar:6468, composite:10366, desc:'Rebuild deck stairs for safety, appearance, and long-term durability.', cedarImg:'assets/photos/John and Ruth - Railing Replacement Cedar.png', compImg:'assets/photos/John and Ruth - Railing Replacment Composite.png', original:'assets/photos/John and Ruth - Deck Stairs ORIGINAL.jpeg'},
-    {id:'floor-decking', title:'Floor Decking Replacement', cedar:9889, composite:14854, desc:'Replace worn deck boards with upgraded material and clean finish.', cedarImg:'assets/photos/John and Ruth - Full Rebuild Cedar with Gapped Railing.png', compImg:'assets/photos/John and Ruth Full Rebuild Composite Angle 1.png', original:'assets/photos/John and Ruth - Full Deck ORIGINAL.jpeg'},
-    {id:'upper-railing', title:'Upper Deck Railing Replacement', cedar:7776, composite:11678, desc:'Replace upper railing system for safer use and updated look.', cedarImg:'assets/photos/John and Ruth - Railing Replacement Cedar.png', compImg:'assets/photos/John and Ruth - Railing Replacment Composite.png', original:'assets/photos/John and Ruth - Full Deck ORIGINAL.jpeg'},
-    {id:'full-rebuild', title:'Full Deck Rebuild', cedar:27994, composite:38537, desc:'Complete deck rebuild option with 10% full project build discount.', cedarNote:'Includes 10% full project build discount. Original estimate: $31,104.', compNote:'Includes 10% full project build discount. Original estimate: $42,819.', cedarImg:'assets/photos/John and Ruth - Full Rebuild Cedar with Gapped Railing.png', compImg:'assets/photos/John and Ruth Full Rebuild Composite Angle 1.png', original:'assets/photos/John and Ruth - Full Deck ORIGINAL.jpeg'},
-    {id:'future-pool', title:'Future Pool Plan with Stairs New Build', cedar:null, composite:null, desc:'Future pool-side concept option and stair plan.', cedarImg:'assets/photos/John and Ruth - Future Pool Plans with Stairs Cedar.png', compImg:'assets/photos/John and Ruth - Future Pool Plan with Stairs Composite.png', original:'assets/photos/John and Ruth - Future Pool Plan with Stairs ORiGINAL.jpeg'}
+    {id:'garage-stairs', title:'Garage Stairs Replacement', cedar:5798, composite:9358, desc:'Replace aging garage stairs with stronger, safer construction.', cedarImg:photos.cedarGarageStairs, compImg:photos.compGarageStairs, original:photos.originalGarageStairs},
+    {id:'deck-stairs', title:'Deck Stairs Replacement', cedar:6468, composite:10366, desc:'Rebuild deck stairs for safety, appearance, and long-term durability.', cedarImg:photos.cedarRailing, compImg:photos.compRailing, original:photos.originalDeckStairs},
+    {id:'floor-decking', title:'Floor Decking Replacement', cedar:9889, composite:14854, desc:'Replace worn deck boards with upgraded material and clean finish.', cedarImg:photos.cedarFullRebuild, compImg:photos.compFullRebuild, original:photos.originalFullDeck},
+    {id:'upper-railing', title:'Upper Deck Railing Replacement', cedar:7776, composite:11678, desc:'Replace upper railing system for safer use and updated look.', cedarImg:photos.cedarRailing, compImg:photos.compRailing, original:photos.originalFullDeck},
+    {id:'full-rebuild', title:'Full Deck Rebuild', cedar:27994, composite:38537, desc:'Complete deck rebuild option with 10% full project build discount.', cedarNote:'Includes 10% full project build discount. Original estimate: $31,104.', compNote:'Includes 10% full project build discount. Original estimate: $42,819.', cedarImg:photos.cedarFullRebuild, compImg:photos.compFullRebuild, original:photos.originalFullDeck},
+    {id:'future-pool', title:'Future Pool Plan with Stairs New Build', cedar:null, composite:null, desc:'Future pool-side concept option and stair plan.', cedarImg:photos.cedarFuturePool, compImg:photos.compFuturePool, original:photos.originalFuturePool}
   ];
 
   const selected = {};
