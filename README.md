@@ -66,6 +66,22 @@ Optional: change the form `action` back to `contact-handler.php` if your host su
 3. Upload gallery images to `assets/photos/`.
 4. Submit a test form and verify email delivery.
 
+## Local Preview (No backend/frontend folders required)
+
+This project is a static site and does not require `backend/` and `frontend/` folders.
+
+Use the included launcher from the project root:
+
+```bash
+./launch-latest.sh
+```
+
+Then open:
+
+- `http://localhost:8080/`
+- `http://localhost:8080/john-ruth-custom-deck-options.html`
+- `http://localhost:8080/ellie-custom-estimate-options.html`
+
 ## SEO Files
 
 - `robots.txt` included for crawler directives.
