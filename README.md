@@ -7,6 +7,7 @@ A minimalistic static website for Repair My Deck that works on low-cost shared h
 - `index.html` - Main homepage markup with SEO, pricing, gallery, reviews, and contact form.
 - `backyard-builds/index.html` - Dedicated backyard builds / outdoor woodworking service page.
 - `john-ruth-custom-deck-options.html` - Private customer-specific quote/options page for John and Ruth.
+- `ellie-custom-estimate-options.html` - Private customer-specific estimate/options page for Ellie with placeholder pricing and image upload placeholders.
 - `styles.css` - Minimal responsive styles.
 - `script.js` - Menu toggle and contact form validation/submission.
 - `reviews.js` - Google reviews section data/link configuration.
