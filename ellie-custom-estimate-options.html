@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     .el-wrap{padding:2rem 0 4rem}.el-hero{margin-bottom:1.5rem}.el-two-col{display:grid;gap:1rem;grid-template-columns:1fr}
+    .el-single-wrap{max-width:780px;margin:0 auto 1rem}
     .el-options{display:grid;gap:1rem}.el-option{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:1rem;box-shadow:var(--shadow-sm)}
     .el-img-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:.6rem 0}
     .el-toggle{display:block;width:100%;background:none;border:0;padding:0;cursor:pointer}.el-toggle img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
@@ -37,6 +38,10 @@
     </section>
 
     <section class="section">
+      <div class="el-single-wrap">
+        <h2 style="text-align:center">Demolition &amp; Disposal Options (Single Selection Card)</h2>
+        <div id="single-options" class="el-options"></div>
+      </div>
       <div class="el-two-col">
         <div><h2>Cedar / Standard Build Options</h2><div id="cedar-options" class="el-options"></div></div>
         <div><h2>Composite / Premium Build Options</h2><div id="composite-options" class="el-options"></div></div>
@@ -82,22 +87,23 @@
 (function(){
   const fmt = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', maximumFractionDigits:0});
   const options = [
-    {id:'front-door-stairs-remodel', title:'Front Door Stairs Remodel', cedar:2100, composite:2900, desc:'Remodel front door stair structure for safer access and improved curb appeal.', cedarImg:'assets/photos/ellie-front-door-stairs-remodel-cedar.png', compImg:'assets/photos/ellie-front-door-stairs-remodel-composite.png', original:'assets/photos/ellie-front-door-stairs-remodel-original.jpg'},
-    {id:'hot-tub-removal', title:'Hot Tub Deck Removal', cedar:1800, composite:2400, desc:'Remove existing hot tub deck structure and dispose of debris.', cedarImg:'assets/photos/ellie-hot-tub-removal-cedar.png', compImg:'assets/photos/ellie-hot-tub-removal-composite.png', original:'assets/photos/ellie-hot-tub-removal-original.jpg'},
+    {id:'hot-tub-removal', title:'Hot Tub Deck Removal', single:1800, type:'single', desc:'Remove existing hot tub deck structure and dispose of debris.', singleImg:'assets/photos/ellie-hot-tub-removal-original.jpg', original:'assets/photos/ellie-hot-tub-removal-original.jpg'},
+    {id:'pool-deck-removal', title:'Pool Deck Removal', single:2600, type:'single', desc:'Remove existing pool deck and dispose of materials.', singleImg:'assets/photos/ellie-pool-deck-removal-original.jpg', original:'assets/photos/ellie-pool-deck-removal-original.jpg'},
+    {id:'front-deck-removal', title:'Front Deck Removal', single:1900, type:'single', desc:'Remove front deck structure and clean work area.', singleImg:'assets/photos/ellie-front-deck-removal-original.jpg', original:'assets/photos/ellie-front-deck-removal-original.jpg'},
+    {id:'front-door-stairs-remodel', title:'Front Door Stairs Remodel', cedar:2100, composite:2900, type:'dual', desc:'Remodel front door stair structure for safer access and improved curb appeal.', cedarImg:'assets/photos/ellie-front-door-stairs-remodel-cedar.png', compImg:'assets/photos/ellie-front-door-stairs-remodel-composite.png', original:'assets/photos/ellie-front-door-stairs-remodel-original.jpg'},
     {id:'retaining-privacy-repair', title:'Reinforce Retaining Wall and Privacy Wall Repair', cedar:3400, composite:4600, desc:'Reinforce and repair retaining/privacy wall components for safety and stability.', cedarImg:'assets/photos/ellie-retaining-privacy-cedar.png', compImg:'assets/photos/ellie-retaining-privacy-composite.png', original:'assets/photos/ellie-retaining-privacy-original.jpg'},
     {id:'upper-stair-railing-safety', title:'Upper Stair Railing Safety Reinforcement', cedar:1450, composite:1950, desc:'Strengthen upper stair railing supports and attachment points.', cedarImg:'assets/photos/ellie-railing-repairs-cedar.png', compImg:'assets/photos/ellie-railing-repairs-composite.png', original:'assets/photos/ellie-railing-repairs-original.jpg'},
     {id:'pool-deck-repairs', title:'Pool Deck Repairs', cedar:2200, composite:3100, desc:'Repair loose/damaged areas and improve deck stability around pool.', subitems:['Repair Loose Boards','Build A Stage for a 2-year band-aid option over aging split frame pool deck'], cedarImg:'assets/photos/ellie-pool-deck-repairs-cedar.png', compImg:'assets/photos/ellie-pool-deck-repairs-composite.png', original:'assets/photos/ellie-pool-deck-repairs-original.jpg'},
-    {id:'pool-deck-removal', title:'Pool Deck Removal', cedar:2600, composite:3400, desc:'Remove existing pool deck and dispose of materials.', cedarImg:'assets/photos/ellie-pool-deck-removal-cedar.png', compImg:'assets/photos/ellie-pool-deck-removal-composite.png', original:'assets/photos/ellie-pool-deck-removal-original.jpg'},
-    {id:'front-deck-removal', title:'Front Deck Removal', cedar:1900, composite:2500, desc:'Remove front deck structure and clean work area.', cedarImg:'assets/photos/ellie-front-deck-removal-cedar.png', compImg:'assets/photos/ellie-front-deck-removal-composite.png', original:'assets/photos/ellie-front-deck-removal-original.jpg'},
     {id:'lower-upper-expansion', title:'Lower and Upper House Deck Expansion', cedar:6800, composite:9200, desc:'Expand lower and upper house deck footprints with reinforced framing.', cedarImg:'assets/photos/ellie-lower-upper-expansion-cedar.png', compImg:'assets/photos/ellie-lower-upper-expansion-composite.png', original:'assets/photos/ellie-lower-upper-expansion-original.jpg'}
   ];
 
   const selected = {};
   const cedarCol = document.getElementById('cedar-options');
   const compCol = document.getElementById('composite-options');
+  const singleCol = document.getElementById('single-options');
 
   function card(option, material){
-    const img = material==='cedar'?option.cedarImg:option.compImg;
+    const img = material==='single'?option.singleImg:(material==='cedar'?option.cedarImg:option.compImg);
     const id = `${option.id}-${material}`;
     const container = document.createElement('article');
     container.className='el-option';
@@ -109,9 +115,9 @@
         </button>
       </div>
       <p class="el-help">Click image to toggle existing and proposed rendering. If upload is pending, a placeholder panel is shown.</p>
-      <p><strong>Estimate: ${fmt.format(material==='cedar' ? option.cedar : option.composite)}</strong></p>
+      <p><strong>Estimate: ${fmt.format(material==='single' ? option.single : (material==='cedar' ? option.cedar : option.composite))}</strong></p>
       ${option.subitems ? `<ul>${option.subitems.map(item=>`<li>${item}</li>`).join('')}</ul>` : ''}
-      <label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="${material}" /> <span>Select ${material==='cedar'?'Cedar/Standard':'Composite/Premium'} Option</span></label>`;
+      <label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="${material}" /> <span>Select ${material==='single'?'Demolition/Disposal':(material==='cedar'?'Cedar/Standard':'Composite/Premium')} Option</span></label>`;
 
     const image = container.querySelector('img');
     const btn = container.querySelector('.el-toggle');
@@ -129,7 +135,10 @@
     return container;
   }
 
-  options.forEach(o=>{cedarCol.appendChild(card(o,'cedar'));compCol.appendChild(card(o,'composite'));});
+  options.forEach(o=>{
+    if(o.type==='single') singleCol.appendChild(card(o,'single'));
+    else { cedarCol.appendChild(card(o,'cedar')); compCol.appendChild(card(o,'composite')); }
+  });
 
   const allChecks = document.querySelectorAll('input[type="checkbox"][data-option]');
   allChecks.forEach(ch=>ch.addEventListener('change',()=>{
@@ -148,8 +157,8 @@
     options.forEach(o=>{
       const pick = selected[o.id];
       if(!pick) return;
-      const mat = pick.material==='cedar'?'Cedar/Standard':'Composite/Premium';
-      const price = pick.material==='cedar' ? o.cedar : o.composite;
+      const mat = pick.material==='single'?'Demolition/Disposal':(pick.material==='cedar'?'Cedar/Standard':'Composite/Premium');
+      const price = pick.material==='single' ? o.single : (pick.material==='cedar' ? o.cedar : o.composite);
       total += price;
       selectedList.push(`${o.title} — ${mat} — ${fmt.format(price)}`);
       customList.push(`${o.title} — ${mat} — preliminary estimate.`);
