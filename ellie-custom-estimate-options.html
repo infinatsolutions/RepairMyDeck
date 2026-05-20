@@ -7,8 +7,7 @@
   <meta name="description" content="Private customer estimate page for Ellie to review and select itemized deck and wall project options from Repair My Deck." />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .el-wrap{padding:2rem 0 4rem}.el-hero{margin-bottom:1.5rem}.el-two-col{display:grid;gap:1rem;grid-template-columns:1fr}
-    .el-single-wrap{max-width:780px;margin:0 auto 1rem}
+    .el-wrap{padding:2rem 0 4rem}.el-hero{margin-bottom:1.5rem}
     .el-options{display:grid;gap:1rem}.el-option{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:1rem;box-shadow:var(--shadow-sm)}
     .el-img-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:.6rem 0}
     .el-toggle{display:block;width:100%;background:none;border:0;padding:0;cursor:pointer}.el-toggle img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
@@ -19,7 +18,7 @@
     .el-help{font-size:.85rem;color:var(--muted);margin:.35rem 0 0}.el-summary{position:sticky;bottom:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow-md);z-index:5}
     .el-total{font-size:1.2rem;font-weight:800}.el-missing{display:grid;place-items:center;min-height:220px;background:#ececec;color:#555;font-weight:700}
     .el-disclaimer{font-size:.92rem;color:#333;background:#f9f9f9;border:1px solid var(--line);padding:.9rem;border-radius:10px}
-    @media(min-width:980px){.el-two-col{grid-template-columns:1fr 1fr}.el-check-label{font-size:1.3rem}}
+    @media(min-width:980px){.el-check-label{font-size:1.3rem}}
   </style>
 </head>
 <body>
@@ -38,14 +37,8 @@
     </section>
 
     <section class="section">
-      <div class="el-single-wrap">
-        <h2 style="text-align:center">Demolition &amp; Disposal Options (Single Selection Card)</h2>
-        <div id="single-options" class="el-options"></div>
-      </div>
-      <div class="el-two-col">
-        <div><h2>Cedar / Standard Build Options</h2><div id="cedar-options" class="el-options"></div></div>
-        <div><h2>Composite / Premium Build Options</h2><div id="composite-options" class="el-options"></div></div>
-      </div>
+      <h2>Project Options</h2>
+      <div id="all-options" class="el-options"></div>
     </section>
 
     <section class="el-summary" aria-live="polite">
@@ -98,26 +91,27 @@
   ];
 
   const selected = {};
-  const cedarCol = document.getElementById('cedar-options');
-  const compCol = document.getElementById('composite-options');
-  const singleCol = document.getElementById('single-options');
+  const allOptionsCol = document.getElementById('all-options');
 
-  function card(option, material){
-    const img = material==='single'?option.singleImg:(material==='cedar'?option.cedarImg:option.compImg);
-    const id = `${option.id}-${material}`;
+  function card(option){
+    const id = option.id;
     const container = document.createElement('article');
     container.className='el-option';
     container.innerHTML = `<h4>${option.title}</h4>
       <p>${option.desc}</p>
       <div class="el-img-wrap"><span class="el-badge" id="badge-${id}">Existing Photo</span>
-        <button type="button" class="el-toggle" aria-label="Toggle existing and proposed image for ${option.title} ${material}">
-          <img src="${option.original}" data-original="${option.original}" data-render="${img}" alt="Existing photo for ${option.title}" loading="lazy" />
+        <button type="button" class="el-toggle" aria-label="Toggle existing and proposed image for ${option.title}">
+          <img src="${option.original}" data-original="${option.original}" data-render="${option.render}" alt="Existing photo for ${option.title}" loading="lazy" />
         </button>
       </div>
       <p class="el-help">Click image to toggle existing and proposed rendering. If upload is pending, a placeholder panel is shown.</p>
-      <p><strong>Estimate: ${fmt.format(material==='single' ? option.single : (material==='cedar' ? option.cedar : option.composite))}</strong></p>
+      <p><strong>Estimate: ${option.type==='single' ? fmt.format(option.single) : `${fmt.format(option.cedar)} (Cedar/Standard) or ${fmt.format(option.composite)} (Composite/Premium)`}</strong></p>
       ${option.subitems ? `<ul>${option.subitems.map(item=>`<li>${item}</li>`).join('')}</ul>` : ''}
-      <label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="${material}" /> <span>Select ${material==='single'?'Demolition/Disposal':(material==='cedar'?'Cedar/Standard':'Composite/Premium')} Option</span></label>`;
+      ${option.type==='single'
+        ? `<label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="single" /> <span>Select Demolition/Disposal Option</span></label>`
+        : `<label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="cedar" /> <span>Select Cedar/Standard Option</span></label>
+           <label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="composite" /> <span>Select Composite/Premium Option</span></label>`
+      }`;
 
     const image = container.querySelector('img');
     const btn = container.querySelector('.el-toggle');
@@ -136,8 +130,8 @@
   }
 
   options.forEach(o=>{
-    if(o.type==='single') singleCol.appendChild(card(o,'single'));
-    else { cedarCol.appendChild(card(o,'cedar')); compCol.appendChild(card(o,'composite')); }
+    const render = o.type==='single' ? o.singleImg : o.cedarImg;
+    allOptionsCol.appendChild(card({...o, render}));
   });
 
   const allChecks = document.querySelectorAll('input[type="checkbox"][data-option]');
