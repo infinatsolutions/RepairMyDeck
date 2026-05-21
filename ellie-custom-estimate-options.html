@@ -105,13 +105,9 @@
         </button>
       </div>
       <p class="el-help">Click image to toggle existing and proposed rendering. If upload is pending, a placeholder panel is shown.</p>
-      <p><strong>Estimate: ${option.type==='single' ? fmt.format(option.single) : `${fmt.format(option.cedar)} (Cedar/Standard) or ${fmt.format(option.composite)} (Composite/Premium)`}</strong></p>
+      <p><strong>Estimate: ${fmt.format(option.single ?? option.cedar)}</strong></p>
       ${option.subitems ? `<ul>${option.subitems.map(item=>`<li>${item}</li>`).join('')}</ul>` : ''}
-      ${option.type==='single'
-        ? `<label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="single" /> <span>Select Demolition/Disposal Option</span></label>`
-        : `<label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="cedar" /> <span>Select Cedar/Standard Option</span></label>
-           <label class="el-check-label"><input type="checkbox" data-option="${option.id}" data-material="composite" /> <span>Select Composite/Premium Option</span></label>`
-      }`;
+      <label class="el-check-label"><input type="checkbox" data-option="${option.id}" /> <span>Select Option</span></label>`;
 
     const image = container.querySelector('img');
     const btn = container.querySelector('.el-toggle');
@@ -138,8 +134,7 @@
   allChecks.forEach(ch=>ch.addEventListener('change',()=>{
     const key = ch.dataset.option;
     if(ch.checked){
-      document.querySelectorAll(`input[data-option="${key}"]`).forEach(other=>{ if(other!==ch) other.checked=false; });
-      selected[key] = {material: ch.dataset.material};
+      selected[key] = true;
     }else delete selected[key];
     sync();
   }));
@@ -149,13 +144,11 @@
     const customList = [];
     let total = 0;
     options.forEach(o=>{
-      const pick = selected[o.id];
-      if(!pick) return;
-      const mat = pick.material==='single'?'Demolition/Disposal':(pick.material==='cedar'?'Cedar/Standard':'Composite/Premium');
-      const price = pick.material==='single' ? o.single : (pick.material==='cedar' ? o.cedar : o.composite);
+      if(!selected[o.id]) return;
+      const price = o.single ?? o.cedar;
       total += price;
-      selectedList.push(`${o.title} — ${mat} — ${fmt.format(price)}`);
-      customList.push(`${o.title} — ${mat} — preliminary estimate.`);
+      selectedList.push(`${o.title} — ${fmt.format(price)}`);
+      customList.push(`${o.title} — preliminary estimate.`);
     });
 
     document.getElementById('selected-empty').style.display = (selectedList.length||customList.length)?'none':'block';
