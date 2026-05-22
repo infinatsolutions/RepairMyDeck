@@ -1,0 +1,18 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Build/distribution artifacts (generate locally, do not commit)
+dist/*.zip
+
+# Optional local photo assets for preview/testing
+assets/photos/*.jpg
+assets/photos/*.jpeg
+assets/photos/*.png
+assets/photos/*.gif
+assets/photos/*.webp
+
+# Keep directory placeholders tracked
+!assets/.gitkeep
+!assets/photos/.gitkeep
+!dist/.gitkeep

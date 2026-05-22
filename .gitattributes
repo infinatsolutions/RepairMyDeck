@@ -1,0 +1,22 @@
+# Normalize line endings for all text files
+* text=auto
+
+# Explicitly mark repository source files as text
+*.html text
+*.css text
+*.js text
+*.php text
+*.md text
+*.xml text
+*.txt text
+*.yml text
+*.yaml text
+
+# Mark common binary types to avoid text diff processing issues
+*.zip binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.pdf binary
