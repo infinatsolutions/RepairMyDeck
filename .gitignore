@@ -1,0 +1,79 @@
+# OS junk
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+Thumbs.db
+Desktop.ini
+
+# Editor and IDE junk
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+
+# Temporary files and backups
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.rej
+*.old
+*.timestamped-backup
+*.backup-*
+*.bak-*
+
+# Build and distribution outputs
+build/**
+dist/**
+!build/.gitkeep
+!dist/.gitkeep
+
+# Logs and runtime output
+logs/**
+!logs/.gitkeep
+!logs/agent-reports/
+!logs/agent-reports/.gitkeep
+!logs/builds/
+!logs/builds/.gitkeep
+!logs/tests/
+!logs/tests/.gitkeep
+!logs/playtests/
+!logs/playtests/.gitkeep
+
+# Godot import/cache artifacts
+.import/
+.godot/
+*.import
+export.cfg
+export_presets.cfg
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node cache/dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Rust build output
+/target/
+
+# Keep scaffold placeholders reviewable
+!.gitkeep
